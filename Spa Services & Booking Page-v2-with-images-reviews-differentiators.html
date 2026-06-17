@@ -1,0 +1,1458 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlowStudio — Our Services</title>
+    <style>
+        :root {
+            --black: #1a1a1a;
+            --white: #fafafa;
+            --accent: #b89fc8;
+            --light-accent: #e8dff0;
+            --deep-purple: #2a1f3d;
+            --mid-purple: #5a3d7a;
+            --text-muted: #666;
+            --border: #e0e0e0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        /* ── HEADER ── */
+        header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(250,250,250,0.88);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 48px;
+        }
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: var(--black);
+            text-decoration: none;
+        }
+        nav { display: flex; gap: 28px; align-items: center; }
+        nav a {
+            font-size: 0.78rem;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            color: var(--black);
+            text-decoration: none;
+            opacity: 0.65;
+            transition: opacity .2s;
+        }
+        nav a:hover, nav a.active { opacity: 1; }
+        .btn-book {
+            background: transparent;
+            border: 1px solid var(--black);
+            padding: 9px 24px;
+            border-radius: 50px;
+            font-size: 0.74rem;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            cursor: pointer;
+            color: var(--black);
+            font-family: inherit;
+            transition: background .2s, color .2s;
+        }
+        .btn-book:hover { background: var(--black); color: var(--white); }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 60vh;
+            background: linear-gradient(150deg, #1a1228 0%, #3d2660 55%, #6b4d8a 100%);
+            display: flex;
+            align-items: flex-end;
+            padding: 130px 64px 72px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 70% 50%, rgba(184,159,200,0.15) 0%, transparent 70%);
+        }
+        .hero-content { position: relative; z-index: 1; }
+        .hero h1 {
+            font-size: clamp(2.2rem, 5.5vw, 4.2rem);
+            font-weight: 400;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+            color: var(--light-accent);
+            line-height: 1.08;
+        }
+        .hero p {
+            margin-top: 22px;
+            color: rgba(232,223,240,0.72);
+            font-size: 1rem;
+            max-width: 500px;
+            line-height: 1.75;
+        }
+
+        /* ── SECTION LABEL ── */
+        .section-label {
+            text-align: center;
+            padding: 64px 40px 0;
+        }
+        .section-label .eyebrow {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        .section-label h2 {
+            font-size: clamp(1.6rem, 3vw, 2.4rem);
+            font-weight: 400;
+            letter-spacing: 0.04em;
+        }
+
+        /* ── SERVICES ── */
+        .services-section { padding: 40px 48px 80px; }
+
+        .service-block {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            align-items: stretch;
+            margin: 48px 0;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+        }
+        .service-block.reverse .service-image { order: 2; }
+        .service-block.reverse .service-content { order: 1; }
+
+        .service-image {
+            position: relative;
+            min-height: 420px;
+            overflow: hidden;
+        }
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+        .service-block:hover .service-image img { transform: scale(1.04); }
+        .service-image-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(42,31,61,0.3) 0%, transparent 60%);
+        }
+
+        .service-content {
+            background: var(--white);
+            padding: 52px 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .service-tag {
+            display: inline-block;
+            font-size: 0.68rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            background: var(--light-accent);
+            color: #5a3d7a;
+            padding: 5px 16px;
+            border-radius: 50px;
+            margin-bottom: 18px;
+            width: fit-content;
+        }
+        .service-content h3 {
+            font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+            font-weight: 400;
+            letter-spacing: 0.04em;
+            margin-bottom: 8px;
+        }
+        .service-subtitle {
+            font-size: 0.88rem;
+            color: var(--accent);
+            letter-spacing: 0.06em;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        .service-content p {
+            font-size: 0.91rem;
+            color: #555;
+            line-height: 1.85;
+            margin-bottom: 28px;
+        }
+        .service-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+        .btn-primary {
+            background: var(--deep-purple);
+            color: var(--white);
+            border: none;
+            padding: 11px 28px;
+            border-radius: 50px;
+            font-size: 0.76rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            font-family: inherit;
+            transition: background .25s;
+        }
+        .btn-primary:hover { background: var(--mid-purple); }
+        .btn-outline {
+            background: transparent;
+            color: var(--black);
+            border: 1px solid var(--border);
+            padding: 11px 28px;
+            border-radius: 50px;
+            font-size: 0.76rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all .25s;
+        }
+        .btn-outline:hover { border-color: var(--black); }
+
+        /* Accordion inside service */
+        .service-accordion { margin-top: 8px; }
+        .accordion-item { border-top: 1px solid var(--border); }
+        .accordion-item:last-child { border-bottom: 1px solid var(--border); }
+        .accordion-btn {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.86rem;
+            letter-spacing: 0.02em;
+            color: var(--black);
+            text-align: left;
+            font-family: inherit;
+        }
+        .acc-icon {
+            width: 14px; height: 14px;
+            position: relative;
+            flex-shrink: 0;
+        }
+        .acc-icon::before, .acc-icon::after {
+            content: '';
+            position: absolute;
+            background: var(--black);
+            transition: all .3s;
+        }
+        .acc-icon::before { width: 100%; height: 1px; top: 50%; left: 0; transform: translateY(-50%); }
+        .acc-icon::after { width: 1px; height: 100%; left: 50%; top: 0; transform: translateX(-50%); }
+        .accordion-btn.open .acc-icon::after { opacity: 0; transform: translateX(-50%) rotate(90deg); }
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .35s ease;
+        }
+        .accordion-body.open { max-height: 160px; }
+        .accordion-body p {
+            padding: 0 0 14px;
+            font-size: 0.83rem;
+            color: #666;
+            line-height: 1.75;
+        }
+
+        /* ── WHY DIFFERENT ── */
+        .why-section {
+            background: linear-gradient(135deg, var(--deep-purple) 0%, #3d2660 100%);
+            padding: 96px 48px;
+            position: relative;
+            overflow: hidden;
+        }
+        .why-section::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(184,159,200,0.12) 0%, transparent 70%);
+        }
+        .why-header {
+            text-align: center;
+            margin-bottom: 64px;
+            position: relative;
+            z-index: 1;
+        }
+        .why-header .eyebrow {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+        .why-header h2 {
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            font-weight: 400;
+            color: var(--light-accent);
+            letter-spacing: 0.06em;
+            line-height: 1.2;
+        }
+        .why-header p {
+            margin-top: 16px;
+            color: rgba(232,223,240,0.65);
+            font-size: 0.95rem;
+            max-width: 560px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            position: relative;
+            z-index: 1;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .why-card {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(184,159,200,0.2);
+            border-radius: 16px;
+            padding: 36px 28px;
+            transition: background .3s, transform .3s;
+        }
+        .why-card:hover {
+            background: rgba(255,255,255,0.12);
+            transform: translateY(-4px);
+        }
+        .why-icon {
+            font-size: 2.2rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+        .why-card h4 {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--light-accent);
+            letter-spacing: 0.04em;
+            margin-bottom: 10px;
+        }
+        .why-card p {
+            font-size: 0.83rem;
+            color: rgba(232,223,240,0.65);
+            line-height: 1.75;
+        }
+        .why-badge {
+            display: inline-block;
+            margin-top: 12px;
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            border: 1px solid rgba(184,159,200,0.4);
+            padding: 4px 12px;
+            border-radius: 50px;
+        }
+
+        /* ── REVIEWS ── */
+        .reviews-section {
+            padding: 96px 48px;
+            background: #f8f4fc;
+        }
+        .reviews-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+        .reviews-header .eyebrow {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        .reviews-header h2 {
+            font-size: clamp(1.6rem, 3vw, 2.4rem);
+            font-weight: 400;
+            letter-spacing: 0.04em;
+        }
+        .stars-summary {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 16px;
+        }
+        .stars { color: #c9a84c; font-size: 1.3rem; letter-spacing: 2px; }
+        .rating-num { font-size: 2rem; font-weight: 700; color: var(--deep-purple); }
+        .rating-count { font-size: 0.85rem; color: var(--text-muted); }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1100px;
+            margin: 0 auto 48px;
+        }
+        .review-card {
+            background: var(--white);
+            border-radius: 14px;
+            padding: 32px 28px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+            transition: transform .3s, box-shadow .3s;
+        }
+        .review-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        .review-stars { color: #c9a84c; font-size: 1rem; letter-spacing: 2px; margin-bottom: 14px; }
+        .review-text {
+            font-size: 0.88rem;
+            color: #444;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .review-avatar {
+            width: 42px; height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+        .review-name { font-size: 0.88rem; font-weight: 600; }
+        .review-service { font-size: 0.75rem; color: var(--accent); letter-spacing: 0.04em; }
+        .review-date { font-size: 0.72rem; color: #aaa; margin-top: 2px; }
+
+        /* Write review */
+        .write-review-wrap {
+            max-width: 640px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 16px;
+            padding: 36px 40px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+        }
+        .write-review-wrap h4 {
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 0.04em;
+            margin-bottom: 20px;
+        }
+        .star-picker {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+        .star-btn {
+            font-size: 1.6rem;
+            cursor: pointer;
+            color: #ddd;
+            transition: color .15s;
+            background: none;
+            border: none;
+            padding: 0;
+            line-height: 1;
+        }
+        .star-btn.active { color: #c9a84c; }
+        .review-inputs { display: flex; flex-direction: column; gap: 12px; }
+        .review-inputs input,
+        .review-inputs textarea,
+        .review-inputs select {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 11px 14px;
+            font-size: 0.88rem;
+            font-family: inherit;
+            color: var(--black);
+            outline: none;
+            transition: border-color .2s;
+            background: var(--white);
+        }
+        .review-inputs input:focus,
+        .review-inputs textarea:focus,
+        .review-inputs select:focus { border-color: var(--accent); }
+        .review-inputs textarea { resize: vertical; min-height: 90px; }
+        .btn-submit-review {
+            margin-top: 16px;
+            width: 100%;
+            padding: 13px;
+            background: var(--deep-purple);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            font-family: inherit;
+            transition: background .25s;
+        }
+        .btn-submit-review:hover { background: var(--mid-purple); }
+
+        /* ── FAQ ── */
+        .faq-section {
+            padding: 96px 48px;
+            background: var(--white);
+        }
+        .faq-inner {
+            max-width: 780px;
+            margin: 0 auto;
+        }
+        .faq-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .faq-header .eyebrow {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        .faq-header h2 {
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-weight: 400;
+            letter-spacing: 0.04em;
+        }
+
+        /* ── BOOKING ── */
+        .booking-section {
+            padding: 96px 48px;
+            background: linear-gradient(135deg, #1a1228 0%, #4a3060 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .booking-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('https://images.squarespace-cdn.com/content/v1/6a2b17318f00bf42261e2468/1781208894479-O5IBQTPIN58BA2VD92L2/126591.jpg') center/cover;
+            opacity: 0.08;
+        }
+        .booking-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        .booking-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .booking-header .eyebrow {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+        .booking-header h2 {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-weight: 400;
+            color: var(--light-accent);
+            letter-spacing: 0.06em;
+            margin-bottom: 14px;
+        }
+        .booking-header p {
+            color: rgba(232,223,240,0.65);
+            font-size: 0.95rem;
+        }
+
+        .booking-card {
+            background: rgba(250,250,250,0.97);
+            border-radius: 20px;
+            padding: 44px 44px;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.35);
+        }
+        .booking-card h4 {
+            font-size: 1.05rem;
+            letter-spacing: 0.05em;
+            margin-bottom: 28px;
+            color: var(--black);
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .form-group { display: flex; flex-direction: column; gap: 6px; }
+        .form-group label {
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #999;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 11px 14px;
+            font-size: 0.9rem;
+            font-family: inherit;
+            color: var(--black);
+            background: var(--white);
+            transition: border-color .2s;
+            outline: none;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus { border-color: var(--accent); }
+        .form-group.full { grid-column: 1 / -1; }
+        .btn-submit {
+            width: 100%;
+            margin-top: 22px;
+            padding: 15px;
+            background: var(--deep-purple);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            cursor: pointer;
+            font-family: inherit;
+            transition: background .25s;
+        }
+        .btn-submit:hover { background: var(--mid-purple); }
+
+        /* ── FOOTER ── */
+        footer {
+            background: #0f0c18;
+            color: rgba(255,255,255,0.65);
+            padding: 72px 48px 40px;
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr;
+            gap: 48px;
+        }
+        .footer-brand .logo { color: var(--light-accent); font-size: 1.3rem; }
+        .footer-brand p { margin-top: 14px; font-size: 0.83rem; line-height: 1.8; }
+        .footer-col h5 {
+            font-size: 0.68rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.35);
+            margin-bottom: 16px;
+        }
+        .footer-col p, .footer-col a {
+            font-size: 0.84rem;
+            line-height: 2;
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            display: block;
+        }
+        .footer-col a:hover { color: var(--light-accent); }
+        .footer-bottom {
+            background: #0f0c18;
+            text-align: center;
+            padding: 20px 48px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            font-size: 0.73rem;
+            color: rgba(255,255,255,0.25);
+        }
+
+        /* ── TOAST ── */
+        .toast {
+            position: fixed;
+            bottom: 30px; right: 30px;
+            background: var(--deep-purple);
+            color: var(--light-accent);
+            padding: 14px 24px;
+            border-radius: 10px;
+            font-size: 0.88rem;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: all .3s;
+            z-index: 9999;
+            pointer-events: none;
+            max-width: 320px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+        .toast.show { opacity: 1; transform: translateY(0); }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .service-block { grid-template-columns: 1fr; }
+            .service-block.reverse .service-image { order: 0; }
+            .service-block.reverse .service-content { order: 0; }
+            .service-image { min-height: 280px; }
+            .why-grid { grid-template-columns: 1fr 1fr; }
+            .reviews-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 640px) {
+            header { padding: 14px 20px; }
+            nav { display: none; }
+            .hero { padding: 110px 24px 52px; }
+            .services-section { padding: 32px 20px 60px; }
+            .why-section { padding: 64px 24px; }
+            .why-grid { grid-template-columns: 1fr; }
+            .reviews-section { padding: 64px 20px; }
+            .write-review-wrap { padding: 28px 20px; }
+            .faq-section { padding: 64px 20px; }
+            .booking-section { padding: 64px 20px; }
+            .booking-card { padding: 28px 20px; }
+            .form-row { grid-template-columns: 1fr; }
+            footer { grid-template-columns: 1fr; padding: 48px 24px 28px; }
+        }
+    </style>
+
+    <script>
+      
+      const files = {
+        
+      }
+    
+
+
+      window.fs = {}
+      window.fs.readFile = (fileName) => {
+        // return array buffer
+        return new Promise((resolve) => {
+          const content = files[fileName]
+          const decoded = atob(content)
+          const arr = new Uint8Array(decoded.length)
+          for (let i = 0; i < decoded.length; i++) {
+            arr[i] = decoded.charCodeAt(i)
+          }
+          resolve(arr)
+        })
+      }
+
+      // stub out window.user.get, window.db.get and window.db.set so that it works when you download the html doc
+      window.db = {}
+      window.db.get = (key) => {
+        // use localStorage to store the artifact
+        const value = localStorage.getItem(key)
+        if (value) {
+          return JSON.parse(value)
+        }
+
+        return null
+      }
+
+      window.db.set = (key, value) => {
+        // use localStorage to store the artifact
+        localStorage.setItem(key, JSON.stringify(value))
+      }
+
+      window.user = {}
+      window.user.get = () => {
+        return {
+          userId: "user-id-placeholder",
+          email: "placeholder@test.com"
+        }
+      }
+
+    </script>
+    </head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <a href="#" class="logo">GlowStudio</a>
+    <nav>
+        <a href="#">About</a>
+        <a href="#" class="active">Our Services</a>
+        <a href="#">Store</a>
+        <a href="#">Contact</a>
+    </nav>
+    <button class="btn-book" onclick="scrollToBook()">Book Now</button>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Our Signature<br>Treatments</h1>
+        <p>Learn more about each of our signature treatments below. Have more questions? Feel free to contact us.</p>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<div class="section-label">
+    <p class="eyebrow">What We Offer</p>
+    <h2>Tailored for Your Skin</h2>
+</div>
+<section class="services-section">
+
+    <!-- Service 1: Injectables -->
+    <div class="service-block">
+        <div class="service-image">
+            <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80" alt="Injectable treatments">
+            <div class="service-image-overlay"></div>
+        </div>
+        <div class="service-content">
+            <span class="service-tag">Injectables</span>
+            <h3>Injectables</h3>
+            <div class="service-subtitle">Neuromodulators &amp; Dermal Fillers</div>
+            <p>Refine your features and restore youthful contours with our precision-led injectable treatments. Our approach is always rooted in "invisible" artistry — enhancing your natural anatomy for a refreshed, well-rested appearance that never looks overdone.</p>
+            <div class="service-accordion">
+                <div class="accordion-item">
+                    <button class="accordion-btn" onclick="toggleAcc(this)">
+                        <span>Botox / Dysport</span><span class="acc-icon"></span>
+                    </button>
+                    <div class="accordion-body">
+                        <p>Smooth forehead lines, crow's feet, and frown lines with precision neuromodulator injections. Results last 3–4 months. Treatment time: 20 minutes.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-btn" onclick="toggleAcc(this)">
+                        <span>Lip Filler</span><span class="acc-icon"></span>
+                    </button>
+                    <div class="accordion-body">
+                        <p>Enhance lip volume and definition using hyaluronic acid fillers. Natural-looking results tailored to your anatomy. Treatment time: 30 minutes.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-btn" onclick="toggleAcc(this)">
+                        <span>Cheek &amp; Jawline Contouring</span><span class="acc-icon"></span>
+                    </button>
+                    <div class="accordion-body">
+                        <p>Restore mid-face volume and sculpt the jawline for a lifted, structured appearance. Results last 12–18 months.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-btn" onclick="toggleAcc(this)">
+                        <span>Under Eye Rejuvenation</span><span class="acc-icon"></span>
+                    </button>
+                    <div class="accordion-body">
+                        <p>Treat hollowness and dark shadows beneath the eyes with delicate filler placement for a well-rested, refreshed look.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="service-actions" style="margin-top:24px;">
+                <button class="btn-primary" onclick="scrollToBook()">Book This Service</button>
+                <button class="btn-outline" onclick="scrollToBook()">Learn More</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Service 2: Regen-Tech -->
+    <div class="service-block reverse">
+        <div class="service-image">
+            <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80" alt="Laser therapy treatments">
+            <div class="service-image-overlay"></div>
+        </div>
+        <div class="service-content">
+            <span class="service-tag">Regen-Tech</span>
+            <h3>REGEN-TECH</h3>
+            <div class="service-subtitle">Laser Therapy &amp; Bio-Stimulators</div>
+            <p>Experience the future of skin health by harnessing your body's own healing potential. Our regenerative suite utilizes advanced laser modalities to target pigment and vascular concerns, alongside cutting-edge bio-stimulators that trigger deep-tissue collagen production.</p>
+            <div class="service-accordion">
+                <div class="accordion-item">
+                    <button class="accordion-btn" onclick="toggleAcc(this)">
+                        <span>IPL Photofacial</span><span class="acc-icon"></span>
+                    </button>
+                    <div class="accordion-body">
+                        <p>Target sun damage, redness, and uneven pigmentation with intense pulsed light. Minimal downtime, maximum glow. Series of 3–5 recommended.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-btn" onclick="toggleAcc(this)">
+                        <span>Sculptra Bio-Stimulator</span><span class="acc-icon"></span>
+                    </button>
+                    <div class="accordion-body">
+                        <p>Stimulate your skin's natural collagen production with poly-L-lactic acid injections. Gradual, long-lasting results over 2–3 sessions.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-btn" onclick="toggleAcc(this)">
+                        <span>Vascular Laser</span><span class="acc-icon"></span>
+                    </button>
+                    <div class="accordion-body">
+                        <p>Reduce visible redness, rosacea, and broken capillaries with targeted vascular laser technology. Safe for all skin types.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-btn" onclick="toggleAcc(this)">
+                        <span>PRP Rejuvenation</span><span class="acc-icon"></span>
+                    </button>
+                    <div class="accordion-body">
+                        <p>Harness your own platelet-rich plasma to accelerate skin renewal, improve texture, and restore a luminous complexion.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="service-actions" style="margin-top:24px;">
+                <button class="btn-primary" onclick="scrollToBook()">Book This Service</button>
+                <button class="btn-outline" onclick="scrollToBook()">Learn More</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Service 3: Facials -->
+    <div class="service-block">
+        <div class="service-image">
+            <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80" alt="Facial treatments">
+            <div class="service-image-overlay"></div>
+        </div>
+        <div class="service-content">
+            <span class="service-tag">Facials</span>
+            <h3>Facial Treatments</h3>
+            <div class="service-subtitle">Expert-Crafted Facials</div>
+            <p>Beyond the basic spa experience, our medical-grade facials are high-performance rituals tailored to your skin's immediate needs. Each session combines clinical-strength active ingredients with specialized techniques to decongest, hydrate, and brighten your complexion.</p>
+            <div class="service-accordion">
+                <div class="accordion-item">
+                    <button class="accordion-btn" onclick="toggleAcc(this)">
+                        <span>Signature Glow Facial</span><span class="acc-icon"></span>
+                    </button>
+                    <div class="accordion-body">
+                        <p>Our most popular treatment. A 75-minute deep-cleanse, exfoliation, and hydration ritual that leaves skin luminous and balanced.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-btn" onclick="toggleAcc(this)">
+                        <span>Acne Clarity Facial</span><span class="acc-icon"></span>
+                    </button>
+                    <div class="accordion-body">
+                        <p>Targeted decongestion using salicylic acid, LED therapy, and extractions to clear breakouts and calm inflammation.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-btn" onclick="toggleAcc(this)">
+                        <span>Anti-Aging Lift Facial</span><span class="acc-icon"></span>
+                    </button>
+                    <div class="accordion-body">
+                        <p>Combines peptides, retinol, and facial massage techniques to firm, lift, and restore elasticity for a visibly younger appearance.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-btn" onclick="toggleAcc(this)">
+                        <span>Sensitive Skin Ritual</span><span class="acc-icon"></span>
+                    </button>
+                    <div class="accordion-body">
+                        <p>A gentle, calming facial using bio-identical botanicals to soothe reactive skin, reduce redness, and restore barrier function.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="service-actions" style="margin-top:24px;">
+                <button class="btn-primary" onclick="scrollToBook()">Book This Service</button>
+                <button class="btn-outline" onclick="scrollToBook()">Learn More</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Service 4: Resurfacing -->
+    <div class="service-block reverse">
+        <div class="service-image">
+            <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=800&q=80" alt="Skin resurfacing">
+            <div class="service-image-overlay"></div>
+        </div>
+        <div class="service-content">
+            <span class="service-tag">Resurfacing</span>
+            <h3>Skin Resurfacing</h3>
+            <div class="service-subtitle">RF Microneedling &amp; Chemical Peels</div>
+            <p>Turn the page on texture, scarring, and fine lines with our intensive resurfacing protocols. By combining Radiofrequency (RF) energy with precision microneedling or utilizing designer chemical peels, we accelerate cellular turnover and tighten the skin's structural matrix.</p>
+            <div class="service-accordion">
+                <div class="accordion-item">
+                    <button class="accordion-btn" onclick="toggleAcc(this)">
+                        <span>RF Microneedling</span><span class="acc-icon"></span>
+                    </button>
+                    <div class="accordion-body">
+                        <p>Combines fractional RF energy with microneedles to remodel collagen and tighten skin. Ideal for scars, pores, and laxity. Series of 3 recommended.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-btn" onclick="toggleAcc(this)">
+                        <span>VI Peel</span><span class="acc-icon"></span>
+                    </button>
+                    <div class="accordion-body">
+                        <p>A medium-depth chemical peel that dramatically improves skin tone, texture, and clarity with minimal discomfort and 5–7 days of peeling.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-btn" onclick="toggleAcc(this)">
+                        <span>Lactic Acid Brightening Peel</span><span class="acc-icon"></span>
+                    </button>
+                    <div class="accordion-body">
+                        <p>A gentle yet effective peel for hyperpigmentation and dullness. No downtime. Perfect as a monthly maintenance treatment.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-btn" onclick="toggleAcc(this)">
+                        <span>Nano-Needling Infusion</span><span class="acc-icon"></span>
+                    </button>
+                    <div class="accordion-body">
+                        <p>Superficial channel creation to dramatically enhance serum absorption. No downtime, immediate glow. Great as a facial add-on.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="service-actions" style="margin-top:24px;">
+                <button class="btn-primary" onclick="scrollToBook()">Book This Service</button>
+                <button class="btn-outline" onclick="scrollToBook()">Learn More</button>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- WHY DIFFERENT -->
+<section class="why-section">
+    <div class="why-header">
+        <p class="eyebrow">The GlowStudio Difference</p>
+        <h2>Why We're Unlike<br>Any Other Studio</h2>
+        <p>We don't just treat your skin — we invest in your whole wellness journey with exclusive perks no other spa offers.</p>
+    </div>
+    <div class="why-grid">
+        <div class="why-card">
+            <span class="why-icon">📋</span>
+            <h4>Your Living Skin Profile</h4>
+            <p>Every visit, every change, every result — documented in your personal skin profile. Track your transformation over time with high-resolution imaging and detailed treatment notes.</p>
+            <span class="why-badge">Updated Every Visit</span>
+        </div>
+        <div class="why-card">
+            <span class="why-icon">💌</span>
+            <h4>Monthly Skin-Specific Newsletter</h4>
+            <p>Forget generic beauty tips. Your monthly newsletter is curated by our estheticians based on your unique skin type, current treatments, and seasonal changes — delivered to your inbox.</p>
+            <span class="why-badge">Personalized to You</span>
+        </div>
+        <div class="why-card">
+            <span class="why-icon">🥗</span>
+            <h4>Nutrition for Your Skin</h4>
+            <p>Glow starts from within. We provide personalized dietary guidance — foods that actively support collagen production, reduce inflammation, and amplify your treatment results.</p>
+            <span class="why-badge">Inside-Out Approach</span>
+        </div>
+        <div class="why-card">
+            <span class="why-icon">⛳</span>
+            <h4>Community at the Golf Course</h4>
+            <p>Stay connected with what's happening in our exclusive wellness community at the golf course — events, socials, wellness workshops, and member-only gatherings.</p>
+            <span class="why-badge">Members Only</span>
+        </div>
+        <div class="why-card">
+            <span class="why-icon">🎁</span>
+            <h4>Free Holiday Gift</h4>
+            <p>Every year, active members receive a curated holiday gift box filled with premium skincare products, exclusive samples, and surprise treats — our way of saying thank you.</p>
+            <span class="why-badge">Annual Perk</span>
+        </div>
+        <div class="why-card">
+            <span class="why-icon">✨</span>
+            <h4>Membership Discounts 30%+</h4>
+            <p>Members enjoy exclusive savings of 30% or more on all services, products, and packages. The more you invest in your skin, the more you save — every single visit.</p>
+            <span class="why-badge">Save 30%+ Always</span>
+        </div>
+    </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews-section">
+    <div class="reviews-header">
+        <p class="eyebrow">Client Stories</p>
+        <h2>What Our Clients Say</h2>
+        <div class="stars-summary">
+            <span class="rating-num" id="avgRating">4.9</span>
+            <div>
+                <div class="stars">★★★★★</div>
+                <div class="rating-count" id="reviewCount">Based on 0 reviews</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="reviews-grid" id="reviewsGrid">
+        <!-- Seeded reviews -->
+    </div>
+
+    <!-- Write a Review -->
+    <div class="write-review-wrap">
+        <h4>Share Your Experience</h4>
+        <div class="star-picker" id="starPicker">
+            <button class="star-btn" data-val="1" onclick="setStars(1)">★</button>
+            <button class="star-btn" data-val="2" onclick="setStars(2)">★</button>
+            <button class="star-btn" data-val="3" onclick="setStars(3)">★</button>
+            <button class="star-btn" data-val="4" onclick="setStars(4)">★</button>
+            <button class="star-btn" data-val="5" onclick="setStars(5)">★</button>
+        </div>
+        <div class="review-inputs">
+            <input type="text" id="rName" placeholder="Your name">
+            <select id="rService">
+                <option value="">Which service did you receive?</option>
+                <option>Botox / Dysport</option>
+                <option>Lip Filler</option>
+                <option>Cheek & Jawline Contouring</option>
+                <option>Under Eye Rejuvenation</option>
+                <option>IPL Photofacial</option>
+                <option>Sculptra Bio-Stimulator</option>
+                <option>Signature Glow Facial</option>
+                <option>Acne Clarity Facial</option>
+                <option>Anti-Aging Lift Facial</option>
+                <option>RF Microneedling</option>
+                <option>VI Peel</option>
+            </select>
+            <textarea id="rText" placeholder="Tell us about your experience…"></textarea>
+        </div>
+        <button class="btn-submit-review" onclick="submitReview()">Post Review</button>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+    <div class="faq-inner">
+        <div class="faq-header">
+            <p class="eyebrow">Got Questions?</p>
+            <h2>Frequently Asked Questions</h2>
+        </div>
+        <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAcc(this)">
+                <span>How do I know which treatment is right for my skin type?</span><span class="acc-icon"></span>
+            </button>
+            <div class="accordion-body">
+                <p>We believe in a "measure twice, cut once" philosophy. Every new journey begins with a Comprehensive Skin Discovery session. We use high-resolution analysis to look beneath the surface, discussing your goals and history before tailoring a custom protocol.</p>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAcc(this)">
+                <span>Is there downtime associated with your advanced aesthetics?</span><span class="acc-icon"></span>
+            </button>
+            <div class="accordion-body">
+                <p>Our core philosophy is Results Without Recovery. While traditional treatments often involve significant peeling or redness, we prioritize non-invasive, gentle techniques that respect the skin barrier. Most clients leave with a "post-facial glow" and return to their daily routine immediately.</p>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAcc(this)">
+                <span>What makes "botanical" clinical treatments different from traditional ones?</span><span class="acc-icon"></span>
+            </button>
+            <div class="accordion-body">
+                <p>It's the difference between forcing the skin and fueling it. We use bio-identical botanicals — plant-based ingredients that your skin recognizes — combined with modern delivery systems to achieve professional-grade results while supporting your long-term microbiome health.</p>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAcc(this)">
+                <span>How many sessions will I need to see a visible difference?</span><span class="acc-icon"></span>
+            </button>
+            <div class="accordion-body">
+                <p>While many clients notice an immediate "lift" after a single visit, skin health is a marathon. For concerns like hyperpigmentation or fine lines, we typically recommend a foundational series of 3 to 6 treatments spaced four weeks apart, aligning with your skin's natural 28-day regeneration cycle.</p>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAcc(this)">
+                <span>What is your cancellation policy?</span><span class="acc-icon"></span>
+            </button>
+            <div class="accordion-body">
+                <p>Cancellations must be made a minimum of 24 hours in advance to avoid our cancellation fee ($25). We understand life happens — please reach out as soon as possible if you need to reschedule.</p>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAcc(this)">
+                <span>How does the membership discount work?</span><span class="acc-icon"></span>
+            </button>
+            <div class="accordion-body">
+                <p>Members enjoy 30%+ off all services and products automatically applied at checkout. Membership also includes your personalized skin profile, monthly newsletter, nutrition guidance, community access, and an annual holiday gift. Ask us about joining at your next visit.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- BOOKING -->
+<section class="booking-section" id="booking">
+    <div class="booking-inner">
+        <div class="booking-header">
+            <p class="eyebrow">Start Your Journey</p>
+            <h2>Ready to Begin Your Radiant Journey?</h2>
+            <p>Book your appointment and let us craft a treatment plan tailored to your unique skin story.</p>
+        </div>
+        <div class="booking-card">
+            <h4>Book an Appointment</h4>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>First Name *</label>
+                    <input type="text" id="fname" placeholder="Jane">
+                </div>
+                <div class="form-group">
+                    <label>Last Name</label>
+                    <input type="text" id="lname" placeholder="Smith">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" id="email" placeholder="jane@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="tel" id="phone" placeholder="+1 (000) 000-0000">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Service *</label>
+                    <select id="service">
+                        <option value="">Select a service…</option>
+                        <optgroup label="Injectables">
+                            <option>Botox / Dysport</option>
+                            <option>Lip Filler</option>
+                            <option>Cheek & Jawline Contouring</option>
+                            <option>Under Eye Rejuvenation</option>
+                        </optgroup>
+                        <optgroup label="Regen-Tech">
+                            <option>IPL Photofacial</option>
+                            <option>Sculptra Bio-Stimulator</option>
+                            <option>Vascular Laser</option>
+                            <option>PRP Rejuvenation</option>
+                        </optgroup>
+                        <optgroup label="Facial Treatments">
+                            <option>Signature Glow Facial</option>
+                            <option>Acne Clarity Facial</option>
+                            <option>Anti-Aging Lift Facial</option>
+                            <option>Sensitive Skin Ritual</option>
+                        </optgroup>
+                        <optgroup label="Skin Resurfacing">
+                            <option>RF Microneedling</option>
+                            <option>VI Peel</option>
+                            <option>Lactic Acid Brightening Peel</option>
+                            <option>Nano-Needling Infusion</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Preferred Date *</label>
+                    <input type="date" id="date">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Preferred Time *</label>
+                    <select id="time">
+                        <option value="">Select a time…</option>
+                        <option>8:00 AM</option><option>9:00 AM</option>
+                        <option>10:00 AM</option><option>11:00 AM</option>
+                        <option>12:00 PM</option><option>1:00 PM</option>
+                        <option>2:00 PM</option><option>3:00 PM</option>
+                        <option>4:00 PM</option><option>5:00 PM</option>
+                        <option>6:00 PM</option><option>7:00 PM</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Skin Concern (optional)</label>
+                    <input type="text" id="concern" placeholder="e.g. acne, aging, pigmentation">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group full">
+                    <label>Are you a member?</label>
+                    <select id="member">
+                        <option value="no">No — I'd like to learn more about membership</option>
+                        <option value="yes">Yes — I'm an existing member (30%+ discount applied)</option>
+                        <option value="new">I'd like to sign up for membership today</option>
+                    </select>
+                </div>
+            </div>
+            <button class="btn-submit" onclick="submitBooking()">Confirm Booking</button>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-brand">
+        <a href="#" class="logo">GlowStudio</a>
+        <p>Your skin's evolution, delivered.<br>Science-led. Botanically inspired.<br>Results you can see and feel.</p>
+    </div>
+    <div class="footer-col">
+        <h5>Hours</h5>
+        <p>Monday – Saturday: 8am – 8pm</p>
+        <p>Sunday: 11am – 4pm</p>
+        <h5 style="margin-top:20px">Contact</h5>
+        <p>4892 West Oak Street<br>Seattle, WA 00000</p>
+        <a href="mailto:hello@glowstudio.com">hello@glowstudio.com</a>
+        <a href="tel:+10000000000">+1 000 000 0000</a>
+    </div>
+    <div class="footer-col">
+        <h5>Navigation</h5>
+        <a href="#">About</a>
+        <a href="#">Our Services</a>
+        <a href="#">Store</a>
+        <a href="#">Team</a>
+        <a href="#">Blog</a>
+        <a href="#booking">Book Now</a>
+        <h5 style="margin-top:20px">Membership</h5>
+        <a href="#booking">Join Today — Save 30%+</a>
+    </div>
+</footer>
+<div class="footer-bottom">© 2026 GlowStudio. All rights reserved. Crafted with care for your skin.</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+    // ── ACCORDION ──
+    function toggleAcc(btn) {
+        const body = btn.nextElementSibling;
+        const isOpen = body.classList.contains('open');
+        const container = btn.closest('.service-accordion, .faq-inner, .faq-section');
+        if (container) {
+            container.querySelectorAll('.accordion-body.open').forEach(b => b.classList.remove('open'));
+            container.querySelectorAll('.accordion-btn.open').forEach(b => b.classList.remove('open'));
+        }
+        if (!isOpen) {
+            body.classList.add('open');
+            btn.classList.add('open');
+        }
+    }
+
+    // ── SCROLL TO BOOKING ──
+    function scrollToBook() {
+        document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // ── TOAST ──
+    function showToast(msg) {
+        const t = document.getElementById('toast');
+        t.textContent = msg;
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 4000);
+    }
+
+    // ── BOOKING ──
+    function submitBooking() {
+        const fname = document.getElementById('fname').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const service = document.getElementById('service').value;
+        const date = document.getElementById('date').value;
+        const time = document.getElementById('time').value;
+        const member = document.getElementById('member').value;
+
+        if (!fname || !email || !service || !date || !time) {
+            showToast('⚠️ Please fill in all required fields.');
+            return;
+        }
+        if (!/\S+@\S+\.\S+/.test(email)) {
+            showToast('⚠️ Please enter a valid email address.');
+            return;
+        }
+
+        const booking = {
+            name: fname + ' ' + document.getElementById('lname').value.trim(),
+            email, phone: document.getElementById('phone').value.trim(),
+            service, date, time,
+            concern: document.getElementById('concern').value.trim(),
+            membership: member,
+            bookedAt: new Date().toISOString()
+        };
+
+        window.db.get('glowstudio_bookings').then(existing => {
+            const list = existing ? (existing.list || []) : [];
+            list.push(booking);
+            return window.db.set('glowstudio_bookings', { list });
+        }).then(() => {
+            const memberMsg = member === 'yes' ? ' Your 30% member discount has been applied! 🎉' : '';
+            showToast(`✨ Booking confirmed for ${fname}! We'll be in touch soon.${memberMsg}`);
+            ['fname','lname','email','phone','concern'].forEach(id => document.getElementById(id).value = '');
+            ['service','time','member'].forEach(id => document.getElementById(id).selectedIndex = 0);
+            document.getElementById('date').value = '';
+        }).catch(() => {
+            showToast('✨ Booking received! We\'ll be in touch soon.');
+        });
+    }
+
+    // ── STAR RATING ──
+    let selectedStars = 0;
+    function setStars(n) {
+        selectedStars = n;
+        document.querySelectorAll('.star-btn').forEach((btn, i) => {
+            btn.classList.toggle('active', i < n);
+        });
+    }
+
+    // ── REVIEWS ──
+    const AVATAR_COLORS = ['#5a3d7a','#3d6b7a','#7a3d5a','#3d7a5a','#7a5a3d','#3d3d7a'];
+    const seedReviews = [
+        { name: 'Sophia L.', service: 'Signature Glow Facial', stars: 5, text: 'Absolutely transformative! My skin has never looked this radiant. The esthetician was incredibly knowledgeable and tailored every step to my skin concerns. I left glowing — literally.', date: '2026-05-12' },
+        { name: 'Marcus T.', service: 'RF Microneedling', stars: 5, text: 'I was skeptical at first, but after three sessions my acne scarring has dramatically faded. The team made me feel completely at ease throughout. Worth every penny.', date: '2026-05-28' },
+        { name: 'Amara K.', service: 'Lip Filler', stars: 5, text: 'The most natural-looking results I\'ve ever had. They truly listen to what you want and don\'t overdo it. My friends keep asking if I\'ve just been "looking well" — that\'s the goal!', date: '2026-06-03' },
+        { name: 'Priya N.', service: 'IPL Photofacial', stars: 4, text: 'Three sessions in and my sun spots have faded significantly. The process was comfortable and the staff were wonderful. Can\'t wait to see the final results after my last session.', date: '2026-06-08' },
+        { name: 'Claire B.', service: 'Anti-Aging Lift Facial', stars: 5, text: 'I\'ve been coming here for six months and the difference is remarkable. The personalized newsletter is such a thoughtful touch — I actually follow the advice and it works!', date: '2026-06-10' },
+        { name: 'Jordan M.', service: 'Acne Clarity Facial', stars: 5, text: 'Finally found a place that actually understands acne-prone skin. No harsh treatments, just science-backed care. My breakouts have reduced by 80% in two months. Incredible.', date: '2026-06-14' }
+    ];
+
+    function renderReview(r) {
+        const initials = r.name.split(' ').map(w => w[0]).join('').slice(0,2).toUpperCase();
+        const color = AVATAR_COLORS[Math.floor(Math.random() * AVATAR_COLORS.length)];
+        const stars = '★'.repeat(r.stars) + '☆'.repeat(5 - r.stars);
+        const dateStr = r.date ? new Date(r.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : '';
+        return `
+            <div class="review-card">
+                <div class="review-stars">${stars}</div>
+                <p class="review-text">"${r.text}"</p>
+                <div class="review-author">
+                    <div class="review-avatar" style="background:${color}">${initials}</div>
+                    <div>
+                        <div class="review-name">${r.name}</div>
+                        <div class="review-service">${r.service}</div>
+                        <div class="review-date">${dateStr}</div>
+                    </div>
+                </div>
+            </div>`;
+    }
+
+    async function loadReviews() {
+        const grid = document.getElementById('reviewsGrid');
+        const stored = await window.db.get('glowstudio_reviews');
+        const userReviews = stored ? (stored.list || []) : [];
+        const allReviews = [...seedReviews, ...userReviews];
+
+        grid.innerHTML = allReviews.map(renderReview).join('');
+
+        const total = allReviews.reduce((s, r) => s + r.stars, 0);
+        const avg = (total / allReviews.length).toFixed(1);
+        document.getElementById('avgRating').textContent = avg;
+        document.getElementById('reviewCount').textContent = `Based on ${allReviews.length} review${allReviews.length !== 1 ? 's' : ''}`;
+    }
+
+    async function submitReview() {
+        const name = document.getElementById('rName').value.trim();
+        const service = document.getElementById('rService').value;
+        const text = document.getElementById('rText').value.trim();
+
+        if (!name || !service || !text) {
+            showToast('⚠️ Please fill in your name, service, and review.');
+            return;
+        }
+        if (selectedStars === 0) {
+            showToast('⚠️ Please select a star rating.');
+            return;
+        }
+
+        const review = {
+            name, service, stars: selectedStars, text,
+            date: new Date().toISOString().split('T')[0]
+        };
+
+        const stored = await window.db.get('glowstudio_reviews');
+        const list = stored ? (stored.list || []) : [];
+        list.push(review);
+        await window.db.set('glowstudio_reviews', { list });
+
+        showToast('💜 Thank you for your review! It means the world to us.');
+        document.getElementById('rName').value = '';
+        document.getElementById('rService').selectedIndex = 0;
+        document.getElementById('rText').value = '';
+        setStars(0);
+        loadReviews();
+    }
+
+    // ── INIT ──
+    const dateInput = document.getElementById('date');
+    dateInput.setAttribute('min', new Date().toISOString().split('T')[0]);
+
+    loadReviews();
+</script>
+</body>
+</html>
