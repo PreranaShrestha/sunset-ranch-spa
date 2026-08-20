@@ -109,17 +109,114 @@
     nav {
       position: sticky; top: 0; z-index: 999;
       background: rgba(250,247,244,0.97); backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--beige-mid); padding: 18px 0;
+      border-bottom: 1px solid var(--beige-mid); padding: 12px 0;
     }
     nav .container { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-    .nav-logo {
-      font-family: 'Cormorant Garamond', serif; font-size: 1.3rem;
-      font-weight: 400; color: var(--noir); text-decoration: none; letter-spacing: 0.06em;
-    }
-    .nav-logo span { display: block; font-size: 0.65rem; font-family: 'DM Sans', sans-serif; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 500; }
-    .nav-links { display: flex; align-items: center; gap: 32px; }
-    .nav-links a { font-size: 0.78rem; font-weight: 500; color: var(--muted); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-logo-wrap { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-rose { width: 40px; height: 40px; flex-shrink: 0; }
+    .nav-logo-text strong { display: block; font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; color: var(--noir); letter-spacing: 0.07em; line-height: 1.1; }
+    .nav-logo-text span { display: block; font-size: 0.58rem; font-family: 'DM Sans', sans-serif; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 500; }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a { font-size: 0.76rem; font-weight: 500; color: var(--muted); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
     .nav-links a:hover { color: var(--noir); }
+
+    /* ─── HAMBURGER ─── */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 6px; z-index: 1001; flex-shrink: 0;
+    }
+    .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--noir); transition: all 0.3s ease; border-radius: 2px; }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* ─── MOBILE DRAWER ─── */
+    .mobile-drawer {
+      display: none; flex-direction: column;
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--cream); z-index: 998;
+      padding: 90px 32px 48px;
+      overflow-y: auto;
+    }
+    .mobile-drawer.open { display: flex; }
+    .drawer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 32px; }
+    .drawer-logo svg { width: 48px; height: 48px; }
+    .drawer-logo-text strong { display: block; font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: var(--noir); letter-spacing: 0.07em; }
+    .drawer-logo-text span { display: block; font-size: 0.6rem; font-family: 'DM Sans', sans-serif; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+    .mobile-drawer nav-link {
+      font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300;
+      color: var(--noir); text-decoration: none; letter-spacing: 0.02em;
+      padding: 14px 0; border-bottom: 1px solid var(--beige-mid); width: 100%;
+      display: block; transition: color 0.2s;
+    }
+    .mob-link {
+      font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300;
+      color: var(--noir); text-decoration: none; letter-spacing: 0.02em;
+      padding: 14px 0; border-bottom: 1px solid var(--beige-mid); width: 100%;
+      display: block; transition: color 0.2s;
+    }
+    .mob-link:first-of-type { border-top: 1px solid var(--beige-mid); }
+    .mob-link:hover { color: var(--rose); }
+    .mob-book {
+      display: inline-block; margin-top: 32px; background: var(--noir); color: var(--white) !important;
+      font-family: 'DM Sans', sans-serif !important; font-size: 0.8rem !important; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase; padding: 16px 36px;
+      text-decoration: none; border-bottom: none !important; transition: background 0.2s !important;
+      width: auto !important; align-self: flex-start;
+    }
+    .mob-book:hover { background: var(--rose-deep) !important; }
+
+    /* ─── MOBILE DRAWER — Services expand ─── */
+    .mob-svc-toggle {
+      display: flex; align-items: center; justify-content: space-between;
+      font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300;
+      color: var(--noir); letter-spacing: 0.02em;
+      padding: 14px 0; border-bottom: 1px solid var(--beige-mid); border-top: 1px solid var(--beige-mid);
+      width: 100%; background: none; border-left: none; border-right: none; cursor: pointer;
+      transition: color 0.2s;
+    }
+    .mob-svc-toggle:hover { color: var(--rose); }
+    .mob-svc-toggle.open { color: var(--rose); border-bottom: none; }
+    .mob-svc-arrow {
+      font-size: 1.4rem; font-weight: 300; color: var(--beige-dark);
+      transition: transform 0.28s ease; line-height: 1;
+    }
+    .mob-svc-toggle.open .mob-svc-arrow { transform: rotate(45deg); color: var(--rose); }
+
+    .mob-svc-panel {
+      display: none; flex-direction: column;
+      border-bottom: 1px solid var(--beige-mid);
+      padding: 6px 0 18px;
+    }
+    .mob-svc-panel.open { display: flex; }
+
+    .mob-svc-head {
+      font-family: 'DM Sans', sans-serif; font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);
+      padding: 14px 0 8px; margin-top: 4px;
+    }
+    .mob-svc-head.medical { color: var(--rose); }
+    .mob-svc-link {
+      display: flex; align-items: baseline; gap: 10px;
+      padding: 9px 0; text-decoration: none;
+      border-bottom: 1px solid rgba(224,208,196,0.4);
+      transition: color 0.15s;
+    }
+    .mob-svc-link:last-child { border-bottom: none; }
+    .mob-svc-link-name {
+      font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 500;
+      color: var(--noir-soft);
+    }
+    .mob-svc-link-sub {
+      font-size: 0.72rem; color: var(--beige-dark); letter-spacing: 0.02em;
+    }
+    .mob-svc-price {
+      margin-left: auto; white-space: nowrap; flex-shrink: 0;
+      font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 600; color: var(--noir);
+    }
+    .mob-svc-price s { font-weight: 400; font-size: 0.72rem; color: var(--beige-dark); text-decoration: line-through; margin-right: 3px; }
+    .mob-svc-link { align-items: center; }
+    .mob-svc-link:hover .mob-svc-link-name { color: var(--rose); }
 
     /* ─── HERO ─── */
     .hero {
@@ -388,25 +485,282 @@
     .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 22px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-size: 0.78rem; }
     .footer-bottom a { color: var(--gold); text-decoration: none; }
 
+    /* ─── NAV DROPDOWN ─── */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-trigger {
+      display: flex; align-items: center; gap: 5px; cursor: pointer;
+      font-size: 0.76rem; font-weight: 500; color: var(--muted);
+      text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase;
+      transition: color 0.2s; background: none; border: none; padding: 0;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .nav-dropdown-trigger:hover,
+    .nav-dropdown:hover .nav-dropdown-trigger { color: var(--noir); }
+    .nav-dd-chevron {
+      width: 10px; height: 10px; display: block; flex-shrink: 0;
+      transition: transform 0.22s ease;
+    }
+    .nav-dropdown.open .nav-dd-chevron,
+    .nav-dropdown:hover .nav-dd-chevron { transform: rotate(180deg); }
+    .nav-dropdown-menu {
+      display: none; position: absolute; top: calc(100% + 14px); left: 50%;
+      transform: translateX(-50%);
+      background: var(--white); border: 1px solid var(--beige-mid);
+      box-shadow: var(--shadow-lg); z-index: 1100;
+      min-width: 580px; padding: 0;
+    }
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown.open .nav-dropdown-menu { display: block; }
+    .nav-dd-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+    }
+    .nav-dd-col { padding: 24px 0; }
+    .nav-dd-col + .nav-dd-col { border-left: 1px solid var(--beige-mid); }
+    .nav-dd-head {
+      display: flex; align-items: center; gap: 8px;
+      padding: 0 22px 12px;
+      font-family: 'DM Sans', sans-serif; font-size: 0.65rem;
+      font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); border-bottom: 1px solid var(--beige-mid); margin-bottom: 6px;
+    }
+    .nav-dd-head span { opacity: 0.5; }
+    .nav-dd-link {
+      display: flex; align-items: baseline; gap: 8px;
+      padding: 9px 22px; text-decoration: none;
+      transition: background 0.15s;
+    }
+    .nav-dd-link:hover { background: var(--cream); }
+    .nav-dd-link:hover .nav-dd-name { color: var(--noir); }
+    .nav-dd-name {
+      font-family: 'DM Sans', sans-serif; font-size: 0.82rem;
+      font-weight: 500; color: var(--noir-soft); white-space: nowrap;
+      transition: color 0.15s;
+    }
+    .nav-dd-sub {
+      font-size: 0.71rem; color: var(--beige-dark); letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+    .nav-dd-price {
+      margin-left: auto; white-space: nowrap; flex-shrink: 0;
+      font-family: 'DM Sans', sans-serif; font-size: 0.78rem; font-weight: 600;
+      color: var(--noir);
+    }
+    .nav-dd-price s { font-weight: 400; color: var(--beige-dark); font-size: 0.7rem; text-decoration: line-through; margin-right: 3px; }
+    .nav-dd-link { align-items: center; }
+
+    .nav-dd-footer {
+      border-top: 1px solid var(--beige-mid);
+      padding: 14px 22px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .nav-dd-footer span { font-size: 0.74rem; color: var(--muted); }
+    .nav-dd-footer a {
+      font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--rose);
+      text-decoration: none; transition: color 0.15s;
+    }
+    .nav-dd-footer a:hover { color: var(--rose-deep); }
+
+    /* ─── SERVICES NAVIGATOR ─── */
+    .svc-nav {
+      display: flex; gap: 16px; margin-bottom: 44px; flex-wrap: wrap;
+    }
+    .svc-nav-group {
+      flex: 1; min-width: 240px;
+      border: 1px solid var(--beige-mid); background: var(--white);
+    }
+    .svc-nav-toggle {
+      width: 100%; display: flex; align-items: center; gap: 10px;
+      background: none; border: none; cursor: pointer;
+      padding: 18px 22px; text-align: left;
+      font-family: 'DM Sans', sans-serif; font-size: 0.78rem;
+      font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--noir); transition: background 0.2s;
+    }
+    .svc-nav-toggle:hover { background: var(--beige); }
+    .svc-nav-toggle.open { background: var(--beige); border-bottom: 1px solid var(--beige-mid); }
+    .svc-nav-label { flex: 1; }
+    .svc-nav-count {
+      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.08em;
+      background: var(--rose-soft); color: var(--rose-deep);
+      padding: 3px 9px; border-radius: 100px;
+    }
+    .svc-nav-count.gold { background: var(--gold-soft); color: var(--gold-deep); }
+    .svc-nav-arrow {
+      font-size: 1.1rem; font-weight: 300; color: var(--muted);
+      transition: transform 0.25s ease; line-height: 1; width: 18px; text-align: center;
+    }
+    .svc-nav-toggle.open .svc-nav-arrow { transform: rotate(45deg); }
+    .svc-nav-links {
+      display: none; flex-direction: column; padding: 8px 0;
+    }
+    .svc-nav-links.open { display: flex; }
+    .svc-nav-link {
+      display: flex; align-items: center; gap: 10px;
+      padding: 11px 22px;
+      font-family: 'DM Sans', sans-serif; font-size: 0.82rem;
+      font-weight: 400; color: var(--muted); text-decoration: none;
+      transition: color 0.15s, background 0.15s; letter-spacing: 0.03em;
+      border-left: 2px solid transparent;
+    }
+    .svc-nav-link:hover {
+      color: var(--noir); background: var(--cream);
+      border-left-color: var(--rose);
+    }
+    .svc-nav-link .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--beige-dark); flex-shrink: 0; }
+    .svc-nav-link:hover .dot { background: var(--rose); }
+
+    /* ─── WHAT WE DO ─── */
+    .whatwedo-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    }
+    .wwd-left {
+      padding: 72px 64px 72px 0;
+      border-right: 1px solid var(--beige-mid);
+    }
+    .wwd-right {
+      padding: 72px 0 72px 64px;
+    }
+    .wwd-pillars {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 40px;
+    }
+    .wwd-pillar {
+      padding: 24px; background: var(--beige); border-top: 2px solid var(--gold);
+    }
+    .wwd-pillar-icon { font-size: 1.4rem; margin-bottom: 10px; }
+    .wwd-pillar h5 {
+      font-family: 'DM Sans', sans-serif; font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--noir); margin-bottom: 8px;
+    }
+    .wwd-pillar p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+    .wwd-quote {
+      margin: 32px 0;
+      padding-left: 24px; border-left: 2px solid var(--rose);
+    }
+    .wwd-quote p {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.3rem;
+      font-weight: 400; font-style: italic; color: var(--noir-soft); line-height: 1.55;
+    }
+    .wwd-list { display: flex; flex-direction: column; gap: 16px; margin-top: 28px; }
+    .wwd-list-item {
+      display: flex; gap: 14px; align-items: flex-start;
+    }
+    .wwd-list-num {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.1rem;
+      font-weight: 600; color: var(--gold); min-width: 24px; line-height: 1.4;
+    }
+    .wwd-list-text { font-size: 0.86rem; color: var(--muted); line-height: 1.65; }
+    .wwd-list-text strong { color: var(--noir); font-weight: 600; }
+
     /* ─── ANIMATIONS ─── */
     .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.65s ease, transform 0.65s ease; }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 900px) {
-      .hero-inner, .about-inner, .products-inner, .membership-inner, .care-section-grid, .footer-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-inner, .about-inner, .care-section-grid { grid-template-columns: 1fr; gap: 40px; }
+      .products-inner { grid-template-columns: 1fr; gap: 0; }
+      .membership-inner { grid-template-columns: 1fr; gap: 0; }
       .hero-visual { display: none; }
       .mem-left::before { display: none; }
-      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
       .section { padding: 64px 0; }
+      .about-img-accent { bottom: -12px; right: -8px; width: 140px; padding: 18px; }
     }
-    @media (max-width: 600px) {
-      .footer-inner { grid-template-columns: 1fr; }
+
+    @media (max-width: 768px) {
+      /* Services Nav */
+      .svc-nav { flex-direction: column; gap: 8px; }
+      .svc-nav-group { min-width: 100%; }
+      .whatwedo-inner { grid-template-columns: 1fr; }
+      .wwd-left { padding: 48px 0 32px; border-right: none; border-bottom: 1px solid var(--beige-mid); }
+      .wwd-right { padding: 32px 0 48px; }
+      .wwd-pillars { grid-template-columns: 1fr; gap: 16px; }
+
+      /* Nav */
+      .nav-links { display: none !important; }
+      .hamburger { display: flex !important; }
+
+      /* Hero */
+      .hero { padding: 80px 0 60px; min-height: auto; }
+      .hero-actions { flex-direction: column; gap: 12px; }
+      .hero-actions .btn { text-align: center; padding: 15px 28px; }
+
+      /* Services */
+      .services-grid { grid-template-columns: 1fr; }
+      .care-grid { grid-template-columns: 1fr !important; }
+      .services-tabs { flex-wrap: wrap; gap: 4px; }
+      .stab { flex: 1; min-width: 120px; padding: 12px 16px; font-size: 0.72rem; }
+
+      /* Membership */
+      .mem-left, .mem-right { padding: 44px 32px; }
+
+      /* Products */
+      .product-card { padding: 40px 32px; }
+
+      /* Offer */
+      .offer-row { gap: 20px; }
+      .offer-divider { width: 60px; height: 1px; }
+      .offer-pct { font-size: 4rem; }
+    }
+
+    @media (max-width: 480px) {
+      .container { padding: 0 18px; }
+      .section { padding: 48px 0; }
+
+      /* Typography */
+      h1 { font-size: clamp(2rem, 10vw, 3rem); }
+      h2 { font-size: clamp(1.7rem, 6vw, 2.2rem); }
+
+      /* Hero */
+      .hero-stats { flex-wrap: wrap; gap: 16px; }
+      .hero-stat { min-width: 80px; }
+      .hero-desc { font-size: 0.94rem; }
+
+      /* About */
+      .about-img { aspect-ratio: 4/3; }
+      .about-img-accent { position: relative; bottom: auto; right: auto; width: 100%; margin-top: 16px; }
+
+      /* Services */
+      .svc-card-top { padding: 22px 18px 16px; }
+      .acc-btn { padding: 12px 18px; font-size: 0.74rem; }
+      .acc-content { padding: 0 18px 14px; }
+      .svc-footer { padding: 14px 18px; flex-direction: column; align-items: flex-start; gap: 10px; }
+
+      /* Pricing */
+      .pricing-grid { grid-template-columns: 1fr 1fr; gap: 2px; }
+      .price-card { padding: 22px 16px; }
+      .price-now { font-size: 2rem; }
+      .pricing-note { padding: 18px 18px; flex-direction: column; gap: 10px; }
+
+      /* Why */
+      .why-grid { grid-template-columns: 1fr 1fr; }
+      .why-card { padding: 28px 18px; }
+      .why-num { font-size: 2.8rem; }
+
+      /* Products */
+      .product-card { padding: 32px 20px; }
+
+      /* Membership */
+      .mem-left, .mem-right { padding: 36px 20px; }
+      .mem-perks { gap: 14px; }
+
+      /* Welcome offer */
+      .offer-row { flex-direction: column; gap: 16px; align-items: center; }
+      .offer-divider { display: none; }
+
+      /* Subscribe */
       .sub-form { flex-direction: column; }
       .sub-form input { border-right: 1.5px solid var(--beige-mid); border-bottom: none; }
-      .pricing-grid { grid-template-columns: 1fr 1fr; }
-      .why-grid { grid-template-columns: 1fr 1fr; }
-      .hero-stats { flex-wrap: wrap; gap: 20px; }
+      .sub-form button { padding: 14px 20px; }
+
+      /* Footer */
+      .footer-inner { grid-template-columns: 1fr; gap: 28px; }
+      .footer-brand p { max-width: 100%; }
+      .footer-bottom { flex-direction: column; gap: 6px; font-size: 0.72rem; }
+
+      /* Announce */
+      .announce { font-size: 0.7rem; padding: 10px 14px; line-height: 1.6; }
     }
   </style>
 </head>
@@ -422,20 +776,179 @@
 <!-- NAV -->
 <nav>
   <div class="container">
-    <a class="nav-logo" href="#">
-      Aarose
-      <span>Holistic &amp; Medical Spa · Kelowna</span>
+    <!-- Logo -->
+    <a class="nav-logo-wrap" href="#">
+      <svg class="nav-rose" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#c8828f" stroke-linejoin="round" stroke-linecap="round">
+          <circle cx="50" cy="50" r="44" stroke-width="2"/>
+          <path d="M50,58 C41,63 39,80 50,92 C61,80 59,63 50,58Z" stroke-width="2"/>
+          <path d="M50,58 C37,60 20,67 11,80 C22,66 38,61 50,58Z" stroke-width="2"/>
+          <path d="M50,58 C63,60 80,67 89,80 C78,66 62,61 50,58Z" stroke-width="2"/>
+          <path d="M33,58 C30,28 38,9 50,6 C62,9 70,28 67,58" stroke-width="2"/>
+          <path d="M40,58 C38,37 43,18 50,15 C57,18 62,37 60,58" stroke-width="1.8"/>
+          <path d="M45,52 C43,38 45,24 50,21 C55,24 57,38 55,52" stroke-width="1.6"/>
+          <ellipse cx="50" cy="14" rx="5" ry="7" stroke-width="1.6"/>
+          <circle cx="50" cy="10" r="2.8" stroke-width="1.4"/>
+        </g>
+      </svg>
+      <div class="nav-logo-text">
+        <strong>Aarose</strong>
+        <span>Holistic &amp; Medical Spa · Kelowna</span>
+      </div>
     </a>
+    <!-- Desktop links -->
     <div class="nav-links">
-      <a href="#services">Services</a>
+      <!-- Services dropdown -->
+      <div class="nav-dropdown" id="navServicesDD">
+        <button class="nav-dropdown-trigger" onclick="toggleNavDD(event)" aria-haspopup="true" aria-expanded="false">
+          Services
+          <svg class="nav-dd-chevron" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="nav-dropdown-menu">
+          <div class="nav-dd-inner">
+            <!-- Medical column -->
+            <div class="nav-dd-col">
+              <div class="nav-dd-head">💉 <span>Medical Services</span></div>
+              <a class="nav-dd-link" href="#svc-hydrafacial">
+                <span class="nav-dd-name">HydraFacial</span>
+                <span class="nav-dd-sub">Cleanse · Extract · Hydrate</span>
+                <span class="nav-dd-price"><s>$280</s>$140</span>
+              </a>
+              <a class="nav-dd-link" href="#svc-dermabrasion">
+                <span class="nav-dd-name">Dermabrasion</span>
+                <span class="nav-dd-sub">Resurface · Brighten</span>
+                <span class="nav-dd-price"><s>$260</s>$130</span>
+              </a>
+              <a class="nav-dd-link" href="#svc-guasha">
+                <span class="nav-dd-name">Gua Sha Facial</span>
+                <span class="nav-dd-sub">Sculpt · Drain · Lift</span>
+                <span class="nav-dd-price"><s>$220</s>$110</span>
+              </a>
+              <a class="nav-dd-link" href="#svc-microneedling">
+                <span class="nav-dd-name">Microneedling</span>
+                <span class="nav-dd-sub">Collagen Induction</span>
+                <span class="nav-dd-price"><s>$380</s>$190</span>
+              </a>
+              <a class="nav-dd-link" href="#svc-dermaplaning">
+                <span class="nav-dd-name">Dermaplaning</span>
+                <span class="nav-dd-sub">Baby-Smooth Skin</span>
+                <span class="nav-dd-price"><s>$200</s>$100</span>
+              </a>
+            </div>
+            <!-- Holistic column -->
+            <div class="nav-dd-col">
+              <div class="nav-dd-head">🌿 <span>Holistic Services</span></div>
+              <a class="nav-dd-link" href="#svc-holistic-facial">
+                <span class="nav-dd-name">Signature Holistic Facial</span>
+                <span class="nav-dd-sub">Balance · Restore</span>
+                <span class="nav-dd-price"><s>$240</s>$120</span>
+              </a>
+              <a class="nav-dd-link" href="#svc-aromatherapy">
+                <span class="nav-dd-name">Aromatherapy Facial Ritual</span>
+                <span class="nav-dd-sub">Calm · Glow</span>
+                <span class="nav-dd-price"><s>$210</s>$105</span>
+              </a>
+              <a class="nav-dd-link" href="#svc-lymphatic">
+                <span class="nav-dd-name">Lymphatic Drainage Facial</span>
+                <span class="nav-dd-sub">Detox · Depuff</span>
+                <span class="nav-dd-price"><s>$250</s>$125</span>
+              </a>
+              <a class="nav-dd-link" href="#svc-hotstone">
+                <span class="nav-dd-name">Hot Stone Facial Ritual</span>
+                <span class="nav-dd-sub">Warming · Nourish</span>
+                <span class="nav-dd-price"><s>$230</s>$115</span>
+              </a>
+              <a class="nav-dd-link" href="#svc-herbal">
+                <span class="nav-dd-name">Herbal Compress Treatment</span>
+                <span class="nav-dd-sub">Ancient Healing</span>
+                <span class="nav-dd-price"><s>$220</s>$110</span>
+              </a>
+              <a class="nav-dd-link" href="#svc-menopause">
+                <span class="nav-dd-name">Menopause Skin Renewal</span>
+                <span class="nav-dd-sub">Restore · Revive</span>
+                <span class="nav-dd-price"><s>$290</s>$145</span>
+              </a>
+              <a class="nav-dd-link" href="#svc-skin-reset">
+                <span class="nav-dd-name">Skin Reset &amp; Analysis</span>
+                <span class="nav-dd-sub">Map · Reset · Renew</span>
+                <span class="nav-dd-price"><s>$240</s>$120</span>
+              </a>
+              <a class="nav-dd-link" href="#svc-jaw-release">
+                <span class="nav-dd-name">Face &amp; Jaw Release</span>
+                <span class="nav-dd-sub">Soften · Sculpt</span>
+                <span class="nav-dd-price"><s>$250</s>$125</span>
+              </a>
+            </div>
+          </div>
+          <div class="nav-dd-footer">
+            <span>13 treatments · 50% off your first visit</span>
+            <a href="#booking">Book Now →</a>
+          </div>
+        </div>
+      </div>
       <a href="#products">Products</a>
       <a href="#pricing">Pricing</a>
       <a href="#membership">Membership</a>
       <a href="#about">About</a>
       <a class="btn btn-noir" href="#booking" style="padding:11px 24px; font-size:0.72rem;">Book Now</a>
     </div>
+    <!-- Hamburger (mobile only) -->
+    <button class="hamburger" aria-label="Open menu" onclick="toggleMenu(this)">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<!-- MOBILE DRAWER -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <div class="drawer-logo">
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="#c8828f" stroke-linejoin="round" stroke-linecap="round">
+        <circle cx="50" cy="50" r="44" stroke-width="2"/>
+        <path d="M50,58 C41,63 39,80 50,92 C61,80 59,63 50,58Z" stroke-width="2"/>
+        <path d="M50,58 C37,60 20,67 11,80 C22,66 38,61 50,58Z" stroke-width="2"/>
+        <path d="M50,58 C63,60 80,67 89,80 C78,66 62,61 50,58Z" stroke-width="2"/>
+        <path d="M33,58 C30,28 38,9 50,6 C62,9 70,28 67,58" stroke-width="2"/>
+        <path d="M40,58 C38,37 43,18 50,15 C57,18 62,37 60,58" stroke-width="1.8"/>
+        <path d="M45,52 C43,38 45,24 50,21 C55,24 57,38 55,52" stroke-width="1.6"/>
+        <ellipse cx="50" cy="14" rx="5" ry="7" stroke-width="1.6"/>
+        <circle cx="50" cy="10" r="2.8" stroke-width="1.4"/>
+      </g>
+    </svg>
+    <div class="drawer-logo-text">
+      <strong>Aarose</strong>
+      <span>Holistic &amp; Medical Spa</span>
+    </div>
+  </div>
+  <!-- Services expand -->
+  <button class="mob-svc-toggle" onclick="toggleMobServices(this)" aria-expanded="false">
+    Services <span class="mob-svc-arrow">+</span>
+  </button>
+  <div class="mob-svc-panel" id="mobSvcPanel">
+    <div class="mob-svc-head medical">💉 Medical Services</div>
+    <a class="mob-svc-link" href="#svc-hydrafacial"   onclick="closeDrawer()"><span class="mob-svc-link-name">HydraFacial</span><span class="mob-svc-link-sub">Cleanse · Extract · Hydrate</span><span class="mob-svc-price"><s>$280</s>$140</span></a>
+    <a class="mob-svc-link" href="#svc-dermabrasion"  onclick="closeDrawer()"><span class="mob-svc-link-name">Dermabrasion</span><span class="mob-svc-link-sub">Resurface · Brighten</span><span class="mob-svc-price"><s>$260</s>$130</span></a>
+    <a class="mob-svc-link" href="#svc-guasha"        onclick="closeDrawer()"><span class="mob-svc-link-name">Gua Sha Facial</span><span class="mob-svc-link-sub">Sculpt · Drain · Lift</span><span class="mob-svc-price"><s>$220</s>$110</span></a>
+    <a class="mob-svc-link" href="#svc-microneedling" onclick="closeDrawer()"><span class="mob-svc-link-name">Microneedling</span><span class="mob-svc-link-sub">Collagen Induction</span><span class="mob-svc-price"><s>$380</s>$190</span></a>
+    <a class="mob-svc-link" href="#svc-dermaplaning"  onclick="closeDrawer()"><span class="mob-svc-link-name">Dermaplaning</span><span class="mob-svc-link-sub">Baby-Smooth Skin</span><span class="mob-svc-price"><s>$200</s>$100</span></a>
+    <div class="mob-svc-head">🌿 Holistic Services</div>
+    <a class="mob-svc-link" href="#svc-holistic-facial" onclick="closeDrawer()"><span class="mob-svc-link-name">Signature Holistic Facial</span><span class="mob-svc-link-sub">Balance · Restore</span><span class="mob-svc-price"><s>$240</s>$120</span></a>
+    <a class="mob-svc-link" href="#svc-aromatherapy"   onclick="closeDrawer()"><span class="mob-svc-link-name">Aromatherapy Facial Ritual</span><span class="mob-svc-link-sub">Calm · Glow</span><span class="mob-svc-price"><s>$210</s>$105</span></a>
+    <a class="mob-svc-link" href="#svc-lymphatic"      onclick="closeDrawer()"><span class="mob-svc-link-name">Lymphatic Drainage Facial</span><span class="mob-svc-link-sub">Detox · Depuff</span><span class="mob-svc-price"><s>$250</s>$125</span></a>
+    <a class="mob-svc-link" href="#svc-hotstone"       onclick="closeDrawer()"><span class="mob-svc-link-name">Hot Stone Facial Ritual</span><span class="mob-svc-link-sub">Warming · Nourish</span><span class="mob-svc-price"><s>$230</s>$115</span></a>
+    <a class="mob-svc-link" href="#svc-herbal"         onclick="closeDrawer()"><span class="mob-svc-link-name">Herbal Compress Treatment</span><span class="mob-svc-link-sub">Ancient Healing</span><span class="mob-svc-price"><s>$220</s>$110</span></a>
+    <a class="mob-svc-link" href="#svc-menopause"      onclick="closeDrawer()"><span class="mob-svc-link-name">Menopause Skin Renewal</span><span class="mob-svc-link-sub">Restore · Revive</span><span class="mob-svc-price"><s>$290</s>$145</span></a>
+    <a class="mob-svc-link" href="#svc-skin-reset"     onclick="closeDrawer()"><span class="mob-svc-link-name">Skin Reset &amp; Analysis</span><span class="mob-svc-link-sub">Map · Reset · Renew</span><span class="mob-svc-price"><s>$240</s>$120</span></a>
+    <a class="mob-svc-link" href="#svc-jaw-release"    onclick="closeDrawer()"><span class="mob-svc-link-name">Face &amp; Jaw Release</span><span class="mob-svc-link-sub">Soften · Sculpt</span><span class="mob-svc-price"><s>$250</s>$125</span></a>
+  </div>
+  <a class="mob-link" href="#products"  onclick="closeDrawer()">Products</a>
+  <a class="mob-link" href="#pricing"   onclick="closeDrawer()">Pricing</a>
+  <a class="mob-link" href="#membership" onclick="closeDrawer()">Membership</a>
+  <a class="mob-link" href="#about"     onclick="closeDrawer()">About</a>
+  <a class="mob-book" href="#booking"   onclick="closeDrawer()">Book Now →</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -456,6 +969,7 @@
           <a class="btn btn-outline" href="#services">Explore Treatments</a>
         </div>
         <div class="hero-stats">
+          <div class="hero-stat"><div class="num">10+</div><div class="lbl">Years expertise</div></div>
           <div class="hero-stat"><div class="num">50%</div><div class="lbl">First visit off</div></div>
           <div class="hero-stat"><div class="num">35%</div><div class="lbl">Member discount</div></div>
           <div class="hero-stat"><div class="num">2</div><div class="lbl">Pro product lines</div></div>
@@ -490,8 +1004,8 @@
       <div class="about-img-wrap fade-up">
         <div class="about-img">🌸</div>
         <div class="about-img-accent">
-          <span class="icon">🌿</span>
-          <span class="label">HOLISTIC &amp; CLINICAL CARE</span>
+          <div class="num">10+</div>
+          <div class="lbl">Years of<br/>Excellence</div>
         </div>
       </div>
       <div class="about-text fade-up">
@@ -606,20 +1120,127 @@
   </div>
 </section>
 
+<!-- WHAT WE DO -->
+<section class="section" style="background:var(--noir);">
+  <div class="container">
+    <div class="whatwedo-inner">
+      <div class="wwd-left fade-up">
+        <div class="eyebrow" style="color:var(--gold);">What We Do</div>
+        <h2 style="color:var(--white); margin-bottom:16px;">Where Clinical Precision<br/>Meets <em style="color:var(--rose);">Ancient Wisdom</em></h2>
+        <p style="color:rgba(255,255,255,0.55); margin-bottom:0; font-size:0.95rem; line-height:1.8;">
+          At Aarose, we practise a dual philosophy that no single-approach spa can offer. Medical-grade science and time-honoured holistic ritual aren't opposites — they're partners. One treats the skin's visible surface. The other restores the skin's inner intelligence. Together, they create transformation that lasts.
+        </p>
+        <div class="wwd-quote">
+          <p style="color:rgba(255,255,255,0.75);">"True radiance isn't achieved through one product or one treatment — it's the result of understanding your skin at every level."</p>
+        </div>
+        <div class="wwd-pillars">
+          <div class="wwd-pillar" style="background:rgba(255,255,255,0.05); border-top-color:var(--rose);">
+            <div class="wwd-pillar-icon">💉</div>
+            <h5 style="color:var(--rose);">Medical Services</h5>
+            <p style="color:rgba(255,255,255,0.5);">Clinical-grade devices and Dermalogica formulas that deliver measurable, science-backed results — HydraFacial, Microneedling, Dermabrasion, and more.</p>
+          </div>
+          <div class="wwd-pillar" style="background:rgba(255,255,255,0.05); border-top-color:var(--gold);">
+            <div class="wwd-pillar-icon">🌿</div>
+            <h5 style="color:var(--gold);">Holistic Services</h5>
+            <p style="color:rgba(255,255,255,0.5);">Ancient techniques rooted in Chinese, Ayurvedic, and botanical traditions — Gua Sha, lymphatic rituals, herbal compresses, and deep fascia release.</p>
+          </div>
+        </div>
+      </div>
+      <div class="wwd-right fade-up">
+        <div class="eyebrow" style="color:var(--gold);">Our Approach</div>
+        <h3 style="color:var(--white); margin-bottom:24px; font-weight:300;">Six Principles Behind<br/>Every Treatment</h3>
+        <div class="wwd-list">
+          <div class="wwd-list-item">
+            <div class="wwd-list-num">01</div>
+            <div class="wwd-list-text" style="color:rgba(255,255,255,0.6);">
+              <strong style="color:var(--white);">Skin is read, not assumed.</strong> Every session begins with a fresh analysis — because your skin on Tuesday is not your skin on Saturday.
+            </div>
+          </div>
+          <div class="wwd-list-item">
+            <div class="wwd-list-num">02</div>
+            <div class="wwd-list-text" style="color:rgba(255,255,255,0.6);">
+              <strong style="color:var(--white);">We treat the whole face, not just symptoms.</strong> Congestion, tension, dullness, and dehydration are connected. We address root causes, not just surface effects.
+            </div>
+          </div>
+          <div class="wwd-list-item">
+            <div class="wwd-list-num">03</div>
+            <div class="wwd-list-text" style="color:rgba(255,255,255,0.6);">
+              <strong style="color:var(--white);">Circulation is everything.</strong> Healthy skin needs oxygen, nutrients, and lymphatic flow. Every treatment we offer — medical or holistic — improves all three.
+            </div>
+          </div>
+          <div class="wwd-list-item">
+            <div class="wwd-list-num">04</div>
+            <div class="wwd-list-text" style="color:rgba(255,255,255,0.6);">
+              <strong style="color:var(--white);">Products must earn their place.</strong> We use only two lines — Dermalogica and Eminence Organics — chosen because nothing else performs at their level.
+            </div>
+          </div>
+          <div class="wwd-list-item">
+            <div class="wwd-list-num">05</div>
+            <div class="wwd-list-text" style="color:rgba(255,255,255,0.6);">
+              <strong style="color:var(--white);">Nervous system regulation is skin care.</strong> Cortisol ages your skin. Every session is designed to activate your parasympathetic state — rest, repair, renewal.
+            </div>
+          </div>
+          <div class="wwd-list-item">
+            <div class="wwd-list-num">06</div>
+            <div class="wwd-list-text" style="color:rgba(255,255,255,0.6);">
+              <strong style="color:var(--white);">Results compound over time.</strong> One session transforms. A series transforms your skin's baseline. We build a long-term plan with every client.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- SERVICES -->
 <section class="section bg-cream" id="services">
   <div class="container">
-    <div class="text-center fade-up" style="margin-bottom:48px;">
+    <div class="text-center fade-up" style="margin-bottom:32px;">
       <div class="eyebrow rose">Our Treatments</div>
       <h2>Medical &amp; Holistic<br/>Skin Treatments</h2>
-      <p style="max-width:500px; margin:14px auto 0;">Every service at Aarose is performed by a trained specialist, customised to your skin, and powered by professional-grade products. Browse our full menu below.</p>
+      <p style="max-width:500px; margin:14px auto 0;">Every service at Aarose is performed by a trained specialist, customised to your skin, and powered by professional-grade products. Use the menu below to navigate directly to any service.</p>
+    </div>
+
+    <!-- SERVICES NAVIGATOR -->
+    <div class="svc-nav fade-up">
+      <div class="svc-nav-group">
+        <button class="svc-nav-toggle" onclick="toggleSvcNav(this)" aria-expanded="false">
+          <span class="svc-nav-label">💉 Medical Services</span>
+          <span class="svc-nav-count">5 treatments</span>
+          <span class="svc-nav-arrow">+</span>
+        </button>
+        <div class="svc-nav-links">
+          <a class="svc-nav-link" href="#svc-hydrafacial"><span class="dot"></span>HydraFacial — Cleanse · Extract · Hydrate</a>
+          <a class="svc-nav-link" href="#svc-dermabrasion"><span class="dot"></span>Dermabrasion — Resurface · Brighten</a>
+          <a class="svc-nav-link" href="#svc-guasha"><span class="dot"></span>Gua Sha Facial — Sculpt · Drain · Lift</a>
+          <a class="svc-nav-link" href="#svc-microneedling"><span class="dot"></span>Microneedling — Collagen Induction</a>
+          <a class="svc-nav-link" href="#svc-dermaplaning"><span class="dot"></span>Dermaplaning — Baby-Smooth Skin</a>
+        </div>
+      </div>
+      <div class="svc-nav-group">
+        <button class="svc-nav-toggle" onclick="toggleSvcNav(this)" aria-expanded="false">
+          <span class="svc-nav-label">🌿 Holistic Services</span>
+          <span class="svc-nav-count gold">8 treatments</span>
+          <span class="svc-nav-arrow">+</span>
+        </button>
+        <div class="svc-nav-links">
+          <a class="svc-nav-link" href="#svc-holistic-facial"><span class="dot"></span>Signature Holistic Facial — Balance · Restore</a>
+          <a class="svc-nav-link" href="#svc-aromatherapy"><span class="dot"></span>Aromatherapy Facial Ritual — Calm · Glow</a>
+          <a class="svc-nav-link" href="#svc-lymphatic"><span class="dot"></span>Lymphatic Drainage Facial — Detox · Depuff</a>
+          <a class="svc-nav-link" href="#svc-hotstone"><span class="dot"></span>Hot Stone Facial Ritual — Warming · Nourish</a>
+          <a class="svc-nav-link" href="#svc-herbal"><span class="dot"></span>Herbal Compress Treatment — Ancient Healing</a>
+          <a class="svc-nav-link" href="#svc-menopause"><span class="dot"></span>Menopause Skin Renewal — Restore · Revive</a>
+          <a class="svc-nav-link" href="#svc-skin-reset"><span class="dot"></span>Skin Reset &amp; Analysis — Map · Reset · Renew</a>
+          <a class="svc-nav-link" href="#svc-jaw-release"><span class="dot"></span>Face &amp; Jaw Release — Soften · Sculpt</a>
+        </div>
+      </div>
     </div>
 
     <div class="eyebrow" style="display:block; margin-bottom:20px; font-size:0.68rem;">Medical Spa Services</div>
     <div class="services-grid" style="margin-bottom:56px;">
 
       <!-- HydraFacial -->
-      <div class="svc-card featured fade-up">
+      <div id="svc-hydrafacial" class="svc-card featured fade-up">
         <div class="svc-card-top">
           <div class="svc-header-row">
             <div class="svc-icon">💧</div>
@@ -692,7 +1313,7 @@
       </div>
 
       <!-- Dermabrasion -->
-      <div class="svc-card fade-up">
+      <div id="svc-dermabrasion" class="svc-card fade-up">
         <div class="svc-card-top">
           <div class="svc-header-row">
             <div class="svc-icon">🌸</div>
@@ -765,7 +1386,7 @@
       </div>
 
       <!-- Gua Sha -->
-      <div class="svc-card fade-up">
+      <div id="svc-guasha" class="svc-card fade-up">
         <div class="svc-card-top">
           <div class="svc-header-row">
             <div class="svc-icon">🪨</div>
@@ -838,7 +1459,7 @@
       </div>
 
       <!-- Microneedling -->
-      <div class="svc-card premium fade-up">
+      <div id="svc-microneedling" class="svc-card premium fade-up">
         <div class="svc-card-top">
           <div class="svc-header-row">
             <div class="svc-icon">⚡</div>
@@ -911,7 +1532,7 @@
       </div>
 
       <!-- Dermaplaning -->
-      <div class="svc-card fade-up">
+      <div id="svc-dermaplaning" class="svc-card fade-up">
         <div class="svc-card-top">
           <div class="svc-header-row">
             <div class="svc-icon">✨</div>
@@ -989,7 +1610,7 @@
     <div class="services-grid">
 
       <!-- Signature Holistic Facial -->
-      <div class="svc-card featured fade-up">
+      <div id="svc-holistic-facial" class="svc-card featured fade-up">
         <div class="svc-card-top">
           <div class="svc-header-row">
             <div class="svc-icon">🌿</div>
@@ -1062,7 +1683,7 @@
       </div>
 
       <!-- Aromatherapy Facial -->
-      <div class="svc-card fade-up">
+      <div id="svc-aromatherapy" class="svc-card fade-up">
         <div class="svc-card-top">
           <div class="svc-header-row">
             <div class="svc-icon">🌺</div>
@@ -1119,7 +1740,7 @@
       </div>
 
       <!-- Lymphatic Drainage -->
-      <div class="svc-card fade-up">
+      <div id="svc-lymphatic" class="svc-card fade-up">
         <div class="svc-card-top">
           <div class="svc-header-row">
             <div class="svc-icon">💎</div>
@@ -1176,7 +1797,7 @@
       </div>
 
       <!-- Hot Stone -->
-      <div class="svc-card fade-up">
+      <div id="svc-hotstone" class="svc-card fade-up">
         <div class="svc-card-top">
           <div class="svc-header-row">
             <div class="svc-icon">🪨</div>
@@ -1233,7 +1854,7 @@
       </div>
 
       <!-- Herbal Compress -->
-      <div class="svc-card fade-up">
+      <div id="svc-herbal" class="svc-card fade-up">
         <div class="svc-card-top">
           <div class="svc-header-row">
             <div class="svc-icon">🌱</div>
@@ -1290,7 +1911,7 @@
       </div>
 
       <!-- Menopause Skin Renewal -->
-      <div class="svc-card featured fade-up">
+      <div id="svc-menopause" class="svc-card featured fade-up">
         <div class="svc-card-top">
           <div class="svc-header-row">
             <div class="svc-icon">🌸</div>
@@ -1363,7 +1984,7 @@
       </div>
 
       <!-- Skin Reset & Analysis -->
-      <div class="svc-card fade-up">
+      <div id="svc-skin-reset" class="svc-card fade-up">
         <div class="svc-card-top">
           <div class="svc-header-row">
             <div class="svc-icon">✨</div>
@@ -1436,7 +2057,7 @@
       </div>
 
       <!-- Face & Jaw Release -->
-      <div class="svc-card fade-up">
+      <div id="svc-jaw-release" class="svc-card fade-up">
         <div class="svc-card-top">
           <div class="svc-header-row">
             <div class="svc-icon">🤍</div>
@@ -1765,6 +2386,70 @@
 </footer>
 
 <script>
+  // ── MOBILE DRAWER SERVICES ──
+  function toggleMobServices(btn) {
+    btn.classList.toggle('open');
+    const panel = document.getElementById('mobSvcPanel');
+    panel.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(panel.classList.contains('open')));
+  }
+
+  // ── NAV SERVICES DROPDOWN ──
+  function toggleNavDD(e) {
+    e.stopPropagation();
+    const dd = document.getElementById('navServicesDD');
+    const isOpen = dd.classList.contains('open');
+    dd.classList.toggle('open');
+    e.currentTarget.setAttribute('aria-expanded', String(!isOpen));
+  }
+  document.addEventListener('click', function() {
+    const dd = document.getElementById('navServicesDD');
+    if (dd) { dd.classList.remove('open'); }
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      const dd = document.getElementById('navServicesDD');
+      if (dd) { dd.classList.remove('open'); }
+    }
+  });
+
+  // ── SERVICES NAVIGATOR ──
+  function toggleSvcNav(btn) {
+    const links = btn.nextElementSibling;
+    const isOpen = btn.classList.contains('open');
+    // Close all open groups first
+    document.querySelectorAll('.svc-nav-toggle.open').forEach(function(b) {
+      b.classList.remove('open');
+      b.setAttribute('aria-expanded', 'false');
+      b.nextElementSibling.classList.remove('open');
+    });
+    // Toggle clicked group (if it was closed)
+    if (!isOpen) {
+      btn.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+      links.classList.add('open');
+    }
+  }
+
+  // ── HAMBURGER MENU ──
+  function toggleMenu(btn) {
+    btn.classList.toggle('open');
+    const drawer = document.getElementById('mobileDrawer');
+    drawer.classList.toggle('open');
+    document.body.style.overflow = drawer.classList.contains('open') ? 'hidden' : '';
+  }
+  function closeDrawer() {
+    const drawer = document.getElementById('mobileDrawer');
+    drawer.classList.remove('open');
+    document.querySelector('.hamburger').classList.remove('open');
+    document.body.style.overflow = '';
+    // Reset services panel
+    const panel = document.getElementById('mobSvcPanel');
+    if (panel) panel.classList.remove('open');
+    const tog = document.querySelector('.mob-svc-toggle');
+    if (tog) { tog.classList.remove('open'); tog.setAttribute('aria-expanded','false'); }
+  }
+
   // Accordion toggle
   function toggle(btn) {
     const content = btn.nextElementSibling;
